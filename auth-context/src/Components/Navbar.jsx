@@ -14,7 +14,6 @@ import {
   ModalFooter,
   ModalBody,
   Button,
-  Text,
   ModalCloseButton,
 } from '@chakra-ui/react'
 
@@ -37,7 +36,7 @@ const NavWrapper = styled.div`
 
 function Navbar() {
 
-  const { handleAuth, isAuth } = React.useContext(AuthContext)
+  const { isAuth, handleSubmit, setEmail, setPassword} = React.useContext(AuthContext)
 
   const OverlayOne = () => (
     <ModalOverlay
@@ -46,23 +45,20 @@ function Navbar() {
     />
   )
 
-  const OverlayTwo = () => (
-    <ModalOverlay
-      bg='none'
-      backdropFilter='auto'
-      backdropInvert='80%'
-      backdropBlur='2px'
-    />
-  )
-
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [overlay, setOverlay] = React.useState(<OverlayOne />)
+
+  React.useEffect(() => {
+    if (isAuth) {
+      onClose();
+    }
+  }, [isAuth, onClose]);
+  
 
 
   return (
     <NavWrapper className='navbar'>
 
-      <button onClick={handleAuth}></button>
 
       <Button
         onClick={() => {
@@ -99,15 +95,19 @@ function Navbar() {
             <div style={{ width:"350px", margin:" 5vh auto"}}>
               <label style={{ display:"flex",flexDirection:"column", gap:"10px", marginBottom:"20px"}}>
                 E-mail
-                <input style={{borderRadius:"10px",  padding:"2vh"}} type="text" placeholder='E-mail'/>
+                <input style={{borderRadius:"10px",  padding:"2vh"}} type="text" placeholder='E-mail'
+                onChange={(e) => setEmail(e.target.value)}/>
               </label>
               <br/>
               <label style={{ display:"flex",flexDirection:"column", gap:"10px"}}>
                 Password
-                <input style={{borderRadius:"10px", padding:"2vh"}} type="Password" placeholder="Password"/>
+                <input style={{borderRadius:"10px", padding:"2vh"}} type="Password" placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}/>
               </label>
               <br/>
-              <button style={{color:"white", fontSize:"20px", fontWeight:"700", margin:"30px 5vh", padding:"1.5vh 10vh", backgroundColor:"blueviolet", borderRadius:"10px"}}>Login</button>
+              <button style={{color:"white", fontSize:"20px", fontWeight:"700", margin:"30px 5vh", padding:"1.5vh 10vh", backgroundColor:"blueviolet", borderRadius:"10px"}}
+                onClick={handleSubmit} 
+              >Login</button>
             </div>
           </ModalBody>
           <ModalFooter>
