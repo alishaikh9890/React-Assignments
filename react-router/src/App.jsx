@@ -7,6 +7,7 @@ import Products from './Components/Products';
 
 import {Routes, Route} from "react-router-dom"
 import ProductDetails from './Components/ProductDetails';
+import NotFound from "./Components/NotFound";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home/>}></Route>
       <Route path="/products" element={<Products/>}></Route>
+      <Route path="*" element={<NotFound/>}></Route>
       <Route path="/products/:productId" element={<ProductDetails/>}></Route>
     </Routes>
       

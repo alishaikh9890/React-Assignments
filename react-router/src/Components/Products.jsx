@@ -12,7 +12,7 @@ border-collapse: collapse;
 
 & th, td{
     border:1px solid gray;
-    padding:1vh;
+    padding:3vh 5vh;
     
 }
 

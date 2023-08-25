@@ -9,7 +9,7 @@ export function ProductContextProvider({children}) {
     const [loading, setLoading] = React.useState(true);
     const [error, setError]  = React.useState(false);
     const [products, setProducts] = React.useState([])
-    // const [productDetails, setProductDetails] = React.useState([])
+    const [productDetails, setProductDetails] = React.useState([])
 
     React.useEffect(() => {
         fetch(`http://localhost:3004/products`)

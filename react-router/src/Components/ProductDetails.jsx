@@ -1,7 +1,12 @@
 import React from 'react'
+import { ProductContext } from '../Contexts/ProductContext';
+
 import { useParams } from "react-router-dom";
 
 function ProductDetails() {
+
+  // const {productDetails} = React.useContext(ProductContext)
+
     const {productId} = useParams();
 
   const [loading, setLoading] = React.useState(true)
@@ -26,7 +31,10 @@ function ProductDetails() {
             ) : error ? (
                 <h2>Something Went Wrong</h2>
             ) : (
-                <h2>{productDetails.name}</h2>
+              <div>
+              <h2>Product Name : {productDetails.name}</h2>
+              <h2>Price : {productDetails.price} $</h2>
+              </div>
             )
         }
     </div>
